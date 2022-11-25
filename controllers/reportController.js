@@ -8,9 +8,6 @@ module.exports.index = async(req,res) =>{
     // console.log(patientId)
     const patient = await Patient.findById(patientId).exec();
 
-    // const patient = Patient.findById(patientId)
-    // console.log(patient)
-
     Report.find({patientId: patientId}, function(err, reports) {
         if (err) {
             console.log("Error in fetching Reports");
@@ -37,3 +34,19 @@ module.exports.create = async(req, res) =>{
     req.flash('success', 'Report created successfully.');
     return res.redirect('back');
 }
+
+// render the patients page
+module.exports.reportStatus = async(req,res) =>{
+    
+    // find reports of requested status
+    Report.find({ status: req.params.status }, function(err, reports) {
+        if (err) {
+            console.log("Error in fetching Reports");
+        }
+
+        res.render('doctor/reports/patient-reports', {
+            reports : reports ?? [],
+            status : req.params.status,
+        });
+    });
+};
