@@ -1,0 +1,39 @@
+<section class="patients min-h-[80vh] flex justify-start items-center">
+    <div class="container mx-auto">
+        <div class="w-full max-w-md p-4 bg-white border rounded-lg shadow-md sm:p-8">
+            <div class="flex items-center justify-between mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900">All Patients</h5>
+            </div>
+            <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200">
+                    <% for(let patient of patients) {%>
+                        <li class="py-3 sm:py-4">
+                            <div class="flex items-center space-x-4">
+                               
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-medium text-gray-900 truncate capitalize">
+                                       <%= patient.name %>
+                                    </p>
+                                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                        <%= patient.phone %>
+                                    </p>
+                                </div>
+                                <a href="/reports/<%= patient._id %>" class="inline-flex items-center text-xs text-lime-600 bg-lime-100 py-2 px-3 rounded">
+                                    All Reports
+                                </a>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+            <!-- if dont have any report for this patient -->
+            <% if(patients.length == 0) { %>
+                <div class="flow-root">
+                    <p class="text-gray-500 mb-3">No patient found.</p>
+                    <a href="/patient-create" class="text-xs text-lime-600 bg-lime-100 py-2 px-3 rounded">Create Patient Now</a>
+                </div>
+            <% } %>
+        </div>
+
+    </div>
+</section>
