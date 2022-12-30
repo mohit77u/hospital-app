@@ -59,7 +59,7 @@ const fs = require('fs');
 // download csv of patient
 module.exports.patientDownloadCsv = async(req,res) => {
 
-    const fields = ['name', 'phone', 'doctorId',];
+    const fields = ['name', 'phone'];
 
     Patient.find().lean().exec({}, function(err, patient) {
         if (err) {
@@ -76,17 +76,19 @@ module.exports.patientDownloadCsv = async(req,res) => {
 
             fs.writeFile(filePath, csvData, function (err) {
                 if (err) {
-                return res.json(err).status(500);
+                    return res.status(500).json({ 
+                        'success' : false,
+                        'err' : err,
+                    });
                 }
                 else {
                     setTimeout(function () {
                         fs.unlinkSync(filePath); // delete this file after 30 seconds
                     }, 30000)
 
-                    return res.json({
+                    return res.status(200).json({
                         'success' : true,
                         'fileUrl' : "/exports/" + filename,
-                        
                     });
                 }
             });
