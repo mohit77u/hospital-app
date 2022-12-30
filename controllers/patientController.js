@@ -95,37 +95,16 @@ module.exports.patientDownloadCsv = async(req,res) => {
         }
     })
 
-    // var filename   = "patients.csv";
-
-    // const patients = await Patient.find().lean().exec();
-
-    // var csvData = [];
-
-    // patients.forEach(function(patient){
-    //     console.log(patient)
-    // })
-
-    // Patient.find().lean().exec({}, function(err, patient) {
-    //     if (err) res.send(err);
-        
-    //     res.statusCode = 200;
-    //     res.setHeader('Content-Type', 'text/csv');
-    //     res.setHeader("Content-Disposition", 'attachment; filename='+filename);
-    //     res.csv(patient, true);
+    //  var filename   = "patients.csv";    
+   
+    //  Patient.find().lean().exec({}, function(err, patient) {
+        //  if (err) res.send(err);
+            
+        //  res.statusCode = 200;
+        //  res.setHeader('Content-Type', 'text/csv');
+        //  res.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        //  res.csv(patient, true);
 
     // });
 
-
-    // fs.writeFile("data.csv", csvData, function(error) {
-    //     if (error) throw error;
-    //     console.log("CSV generated successfully!");
-    // });
-
-    // res.send([
-    //     {
-    //         'status' : 'success',
-    //         'patients' : patients,
-    //         'csv' : csvData,
-    //     }
-    // ]);
 }
